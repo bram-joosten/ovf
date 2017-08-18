@@ -12,18 +12,21 @@ before_deploy:
   - eval "$(ssh-agent)"
   - chmod 600 /tmp/id_rsa
   - ssh-add /tmp/id_rsa
-after_success:
-  - "ssh travis@188.226.165.39"
-  - $ssh-passphrase
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist travis@188.226.165.39:/docker-nginx/html
+  # - "ssh travis@188.226.165.39"
+  # - $ssh-passphrase
   #remove previous existing containers
-  - "sudo docker ps"
-  - "sudo docker stop docker-nginx"
-  - "sudo docker rm docker-nginx"
-  - "sudo docker ps"
-  - "sudo docker pull nginx"
-  - "sudo docker run --name docker-nginx -p 80:80 -d nginx"
-  - "sudo docker ps"
-  - "sudo cd ~/docker-nginx/html"
+  # - "sudo docker ps"
+  # - "sudo docker stop docker-nginx"
+  # - "sudo docker rm docker-nginx"
+  # - "sudo docker ps"
+  # - "sudo docker pull nginx"
+  # - "sudo docker run --name docker-nginx -p 80:80 -d nginx"
+  # - "sudo docker ps"
+  # - "sudo cd ~/docker-nginx/html"
   #- "git clone [repo][public html map]"
   #- git checkout 
 
