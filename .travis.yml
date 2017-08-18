@@ -8,7 +8,6 @@ before_deploy:
 - eval "$(ssh-agent)"
 - chmod 600 /tmp/id_rsa
 - ssh-add /tmp/id_rsa
-- $PASSPHRASE
 deploy:
   provider: script
   skip_cleanup: true
