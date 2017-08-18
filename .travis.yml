@@ -1,5 +1,46 @@
+# before_install:
+  # decrypt config files
+  # - openssl aes-256-cbc -K $encrypted_9ec4e4461a7a_key -iv $encrypted_9ec4e4461a7a_iv -in config.php.enc -out config.php -d
+# install: false
+
+addons:
+  ssh_known_hosts: 188.226.165.39
 language: php
 script: phpunit test.php
-before_install:
-- openssl aes-256-cbc -K $encrypted_278b9bd33ccf_key -iv $encrypted_278b9bd33ccf_iv
-  -in id_rsa.enc -out id_rsa -d
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_278b9bd33ccf_key -iv $encrypted_278b9bd33ccf_iv -in id_rsa.enc -out /tmp/id_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/id_rsa
+  - ssh-add /tmp/id_rsa
+after_success:
+  - "ssh travis@188.226.165.39"
+  - $ssh-passphrase
+  #remove previous existing containers
+  - "sudo docker ps"
+  - "sudo docker stop docker-nginx"
+  - "sudo docker rm docker-nginx"
+  - "sudo docker ps"
+  - "sudo docker pull nginx"
+  - "sudo docker run --name docker-nginx -p 80:80 -d nginx"
+  - "sudo docker ps"
+  - "sudo cd ~/docker-nginx/html"
+  #- "git clone [repo][public html map]"
+  #- git checkout 
+
+
+#   - eval "$(ssh-agent -s)" #start the ssh agent
+#   - chmod 600 .travis/deploy_key.pem # this key should have push access
+#   - ssh-add .travis/deploy_key.pem
+#   - git remote add deploy DEPLOY_REPO_URI_GOES_HERE
+#   - git push deploy
+#
+#NOTES
+#one-time setup
+#digitalocean root connection:
+#ssh root@188.226.165.39
+#create new user:
+#adduser travis
+#give user sudo privileges by adding to sudo group
+#gpasswd -a travis sudo
+#recurring deployment steps
+#
