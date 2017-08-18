@@ -14,6 +14,4 @@ deploy:
   script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ travis@188.226.165.39:files/
   on:
     branch: develop
-before_install:
-- openssl aes-256-cbc -K $encrypted_278b9bd33ccf_key -iv $encrypted_278b9bd33ccf_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+
