@@ -16,6 +16,8 @@ deploy:
   provider: script
   skip_cleanup: true
   script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist travis@188.226.165.39:/docker-nginx/html
+  on:
+    branch: develop
   # - "ssh travis@188.226.165.39"
   # - $ssh-passphrase
   #remove previous existing containers
