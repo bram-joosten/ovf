@@ -14,7 +14,7 @@ New branch per feature, merge when ready to test.
 To create a new feature branch and enter it:
 
 `$ git checkout -b my-feature-branch-name master`
-- **checkout:** checks out a new branch
-- **-b:** tell git to immediately creates a new branch
-- **my-feature-branch-name:** give a descriptive name to the feature you're fixin'
-- **master:** tell git to check out the new branch name from master
+- **checkout:** go to a specific branch
+- **-b:** but wait, tell git to create a new branch, it should have a name!
+- **my-feature-branch-name:** tell git to give the branch this name. Should be descriptive to the feature you're fixin'
+- **master:** tell git to start out the new branch as similar from master
