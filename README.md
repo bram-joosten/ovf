@@ -11,5 +11,5 @@ Has to always work. It's the ultimate, working code for use by end users. Before
 ### Feature branch
 New branch per feature, merge when ready to test. 
 
-To create a new feature branch and enter it:
+To create a new feature branch and enter it: 
 `$ git checkout -b myFeature dev`
