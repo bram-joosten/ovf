@@ -11,5 +11,10 @@ Has to always work. It's the ultimate, working code for use by end users. Before
 ### Feature branch
 New branch per feature, merge when ready to test. 
 
-To create a new feature branch and enter it: 
-`$ git checkout -b myFeature dev`
+To create a new feature branch and enter it:
+
+`$ git checkout -b my-feature-branch-name master`
+**checkout:** checks out a new branch
+**-b:** tell git to immediately creates a new branch
+**my-feature-branch-name:** give a descriptive name to the feature you're fixin'
+**master:** tell git to check out the new branch name from master
