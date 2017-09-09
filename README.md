@@ -9,8 +9,10 @@ Is a mirror from the master. Use for testing live! You may always merge from mas
 
 `git merge --no-ff feature/my-feature-branch-name`
 
+
 ### Master branch
 Has to always work. It's the ultimate, working code for use by end users. Before a merge, it needs to be manually and unit tested first in the develop branch. You can use the app at [dev.ovfietsradar.nl](http://dev.ovfietsradar.nl). Travis should automatically deploy here after a push, and can only merge with develop branches.
+
 
 ### Feature branch
 New branch per feature, merge when ready to test. 
